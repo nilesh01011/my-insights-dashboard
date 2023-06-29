@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +9,66 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f1f1f1;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+#boxBG::after {
+  content: '';
+  width: 42px;
+  height: 40px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: url('../public/images/boxBG.png') no-repeat;
+  background-size: contain;
+  display: block;
+}
+
+/* #logo {
+  height: 32px;
+  width: 100px;
+  background: url('../public/images/Logo.svg') no-repeat;
+  background-size: contain;
+} */
+
+#dropDownlist:first-child {
+  border-radius: 5px 5px 0 0;
+}
+
+#dropDownlist:last-child {
+  border-radius: 0 0 5px 5px;
+}
+
+#right-to-left {
+  animation: rightToLeft 0.7s linear;
+  right: 5px;
+}
+
+@keyframes rightToLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+#left-to-right {
+  right: -400px;
+  animation: leftToRight 0.7s linear;
+  transition: right 0.7s ease-in-out !important;
+}
+
+@keyframes leftToRight {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }

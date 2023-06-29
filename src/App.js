@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+// import MyInsights from './pages/MyInsights';
+import NewInsights from './pages/NewInsights';
+import InsightDetails from './pages/InsightDetails';
+import InsightSubmit from './pages/InsightSubmit';
+import SuccessfulMyInsight from './pages/SuccessfulMyInsight';
+import SummaryDetails from './pages/SummaryDetails';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route exact path='/' element={<HomePage />}></Route>
+        {/* <Route path='/my-insights' element={<MyInsights />}></Route> */}
+        <Route path='/interaction-details' element={<NewInsights />}></Route>
+        <Route path='/insight-details' element={<InsightDetails />}></Route>
+        <Route path='/insight-details-submit' element={<InsightSubmit />}></Route>
+        <Route path='/my-insights' element={<SuccessfulMyInsight />}></Route>
+        <Route path='/summary-my-insights' element={<SummaryDetails />}></Route>
+      </Routes>
+    </>
   );
 }
 
