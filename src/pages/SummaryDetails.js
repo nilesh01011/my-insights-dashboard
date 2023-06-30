@@ -50,7 +50,7 @@ function SummaryDetails() {
                         {/* title */}
                         <h2 className='font-bold'>About Interaction</h2>
                         {/* arrow icons */}
-                        <span className={`${collapseOne === true && 'rotate-180'} transition-all duration-300`}>
+                        <span className={`${collapseOne === true ? 'rotate-0' : 'rotate-180'} transition-all duration-300`}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <g id="icon/chevron-arrow-down">
                                     <path id="Vector" d="M19.92 16.0475L13.4 9.52751C12.63 8.75751 11.37 8.75751 10.6 9.52751L4.08002 16.0475" stroke="#0B0B0C" strokeWidth="1.2" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
@@ -183,7 +183,7 @@ function SummaryDetails() {
                         {/* title */}
                         <h2 className='font-bold'>Additional Details</h2>
                         {/* arrow icons */}
-                        <span className={`${collapseTwo === true && 'rotate-180'} transition-all duration-300`}>
+                        <span className={`${collapseTwo === true ? 'rotate-0' : 'rotate-180'} transition-all duration-300`}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <g id="icon/chevron-arrow-down">
                                     <path id="Vector" d="M19.92 16.0475L13.4 9.52751C12.63 8.75751 11.37 8.75751 10.6 9.52751L4.08002 16.0475" stroke="#0B0B0C" strokeWidth="1.2" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />

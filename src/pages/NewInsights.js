@@ -126,6 +126,40 @@ function NewInsights() {
         }
     ];
 
+    const [interationInput, setInterationInput] = useState('');
+    const [modelInterationInput, setModelInterationInput] = useState('');
+    const [whomMeetInput, setWhomMeetInput] = useState('')
+
+    const [locationValue, setLocationValue] = useState('')
+
+    const [locationRO, setLocationRO] = useState('')
+
+    const [locationPlace, setLocationPlace] = useState('')
+
+    const [businessDetailsValue, setBusinessDetailsValue] = useState('')
+
+    const [brandModelValue, setBrandModelValue] = useState('')
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        console.log('interaction inputs:', interationInput);
+
+        console.log('select options value:', modelInterationInput);
+
+        console.log('Whom did you meet value:', whomMeetInput);
+
+        console.log('location Value:', locationValue)
+
+        console.log('locationRO :', locationRO)
+
+        console.log('locationPlace:', locationPlace)
+
+        console.log('businessDetailsValue:', businessDetailsValue)
+
+        console.log('brandModelValue:', brandModelValue)
+    }
+
 
     return (
         <div className='w-full h-full'>
@@ -140,7 +174,7 @@ function NewInsights() {
                         New Insights
                     </h1>
                     {/* filter icons */}
-                    <h6 onClick={() => navigate('/')} className='font-bold cursor-pointer text-[#FF3E5B]'>
+                    <h6 onClick={() => navigate('/my-insights')} className='font-bold cursor-pointer text-[#FF3E5B]'>
                         Close
                     </h6>
                 </div>
@@ -149,113 +183,116 @@ function NewInsights() {
                     <Stepper steps={1} />
                 </div>
 
-                {/* about interaction */}
-                <div className='w-full h-full bg-white rounded-[10px]'>
-                    {/* header */}
-                    <div onClick={() => setCollapseOne(!collapseOne)} className={`${collapseOne === true && 'pb-0'} w-full p-[16px] cursor-pointer flex items-center justify-between`}>
-                        {/* title */}
-                        <h2 className='font-bold'>About Interaction</h2>
-                        {/* arrow icons */}
-                        <span className={`${collapseOne === true && 'rotate-180'} transition-all duration-300`}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <g id="icon/chevron-arrow-down">
-                                    <path id="Vector" d="M19.92 16.0475L13.4 9.52751C12.63 8.75751 11.37 8.75751 10.6 9.52751L4.08002 16.0475" stroke="#0B0B0C" strokeWidth="1.2" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-                                </g>
-                            </svg>
-                        </span>
-                    </div>
+                <form onSubmit={handleSubmit}>
+                    {/* about interaction */}
+                    <div className='w-full h-full bg-white rounded-[10px]'>
+                        {/* header */}
+                        <div onClick={() => setCollapseOne(!collapseOne)} className={`${collapseOne === true && 'pb-0'} w-full p-[16px] cursor-pointer flex items-center justify-between`}>
+                            {/* title */}
+                            <h2 className='font-bold'>About Interaction</h2>
+                            {/* arrow icons */}
+                            <span className={`${collapseOne === true ? 'rotate-0' : 'rotate-180'} transition-all duration-300`}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <g id="icon/chevron-arrow-down">
+                                        <path id="Vector" d="M19.92 16.0475L13.4 9.52751C12.63 8.75751 11.37 8.75751 10.6 9.52751L4.08002 16.0475" stroke="#0B0B0C" strokeWidth="1.2" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                                    </g>
+                                </svg>
+                            </span>
+                        </div>
 
-                    {/* contents */}
-                    {
-                        collapseOne === true &&
-                        <div className='p-[16px] flex flex-col gap-[16px]'>
-                            {/* Interaction Title */}
-                            <div className='flex w-fill flex-col gap-[5px]'>
-                                {/* title */}
-                                <h6>Interaction Title</h6>
-                                {/* input fields */}
-                                <InputFields placeholder='Ex. XUV 700 intender' />
-                            </div>
-                            {/* Mode of Interaction */}
-                            <div className='flex w-fill flex-col gap-[5px]'>
-                                {/* title */}
-                                <h6>Mode of Interaction</h6>
-                                {/* input fields */}
-                                <DropdownSelect items={modeInteration} disable={false} placeholder="Face to Face" mandatory="" />
-                            </div>
-                            {/* Whom did you meet? */}
-                            <div className='flex w-fill flex-col gap-[5px]'>
-                                {/* title */}
-                                <h6>Whom did you meet?</h6>
-                                {/* input fields */}
-                                <DropdownSelect items={customer} disable={false} placeholder="Customer" mandatory="" />
-                            </div>
-
-                            {/* Location */}
-                            <div className='flex w-fill flex-col gap-[5px]'>
-                                {/* title */}
-                                <h6>Location</h6>
-
-                                <div className='flex gap-[12px] flex-col'>
-                                    <div className='w-full flex items-center gap-[12px]'>
-                                        {/* input fields */}
-                                        <DropdownSelectTwo disable={false} items={zone} placeholder="Zone" mandatory="" />
-                                        {/* input fields */}
-                                        <DropdownSelectTwo disable={false} items={ro} placeholder="Ro" mandatory="" />
-                                    </div>
+                        {/* contents */}
+                        {
+                            collapseOne === true &&
+                            <div className='p-[16px] flex flex-col gap-[16px]'>
+                                {/* Interaction Title */}
+                                <div className='flex w-fill flex-col gap-[5px]'>
+                                    {/* title */}
+                                    <h6>Interaction Title</h6>
                                     {/* input fields */}
-                                    <DropdownSelectTwo disable={false} items={place} placeholder="Place" mandatory="" />
+                                    <InputFields setInterationInput={setInterationInput} placeholder='Ex. XUV 700 intender' />
+                                </div>
+                                {/* Mode of Interaction */}
+                                <div className='flex w-fill flex-col gap-[5px]'>
+                                    {/* title */}
+                                    <h6>Mode of Interaction</h6>
+                                    {/* input fields */}
+                                    <DropdownSelect setChangeInput={setModelInterationInput} items={modeInteration} disable={false} placeholder="Face to Face" mandatory="" />
+                                </div>
+                                {/* Whom did you meet? */}
+                                <div className='flex w-fill flex-col gap-[5px]'>
+                                    {/* title */}
+                                    <h6>Whom did you meet?</h6>
+                                    {/* input fields */}
+                                    <DropdownSelect setChangeInput={setWhomMeetInput} items={customer} disable={false} placeholder="Customer" mandatory="" />
+                                </div>
+
+                                {/* Location */}
+                                <div className='flex w-fill flex-col gap-[5px]'>
+                                    {/* title */}
+                                    <h6>Location</h6>
+
+                                    <div className='flex gap-[12px] flex-col'>
+                                        <div className='w-full flex items-center gap-[12px]'>
+                                            {/* input fields */}
+                                            <DropdownSelectTwo setChangeInput={setLocationValue} disable={false} items={zone} placeholder="Zone" mandatory="" />
+                                            {/* input fields */}
+                                            <DropdownSelectTwo setChangeInput={setLocationRO} disable={false} items={ro} placeholder="Ro" mandatory="" />
+                                        </div>
+                                        {/* input fields */}
+                                        <DropdownSelectTwo setChangeInput={setLocationPlace} disable={false} items={place} placeholder="Place" mandatory="" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    }
-                </div>
-
-                {/* Additional Details */}
-                <div className='w-full h-full bg-white rounded-[10px] mt-[20px]'>
-                    {/* header */}
-                    <div onClick={() => setCollapseTwo(!collapseTwo)} className={`${collapseTwo === true && 'pb-0'} w-full p-[16px] cursor-pointer flex items-center justify-between`}>
-                        {/* title */}
-                        <h2 className='font-bold'>Additional Details</h2>
-                        {/* arrow icons */}
-                        <span className={`${collapseTwo === true && 'rotate-180'} transition-all duration-300`}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <g id="icon/chevron-arrow-down">
-                                    <path id="Vector" d="M19.92 16.0475L13.4 9.52751C12.63 8.75751 11.37 8.75751 10.6 9.52751L4.08002 16.0475" stroke="#0B0B0C" strokeWidth="1.2" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-                                </g>
-                            </svg>
-                        </span>
+                        }
                     </div>
 
-                    {/* contents */}
-                    {
-                        collapseTwo === true &&
-                        <div className='p-[16px] flex flex-col gap-[16px]'>
-                            {/* Mode of Interaction */}
-                            <div className='flex w-fill flex-col gap-[5px]'>
-                                {/* title */}
-                                <h6>Business details</h6>
-                                {/* input fields */}
-                                <DropdownSelectTwo disable={false} items={businessDetails} placeholder="CV" mandatory="" />
-                            </div>
-                            {/* Whom did you meet? */}
-                            <div className='flex w-fill flex-col gap-[5px]'>
-                                {/* title */}
-                                <h6>Brand model</h6>
-                                {/* input fields */}
-                                <DropdownSelectTwo disable={false} items={carModel} placeholder="XUV 300" mandatory="" />
-                            </div>
+                    {/* Additional Details */}
+                    <div className='w-full h-full bg-white rounded-[10px] mt-[20px]'>
+                        {/* header */}
+                        <div onClick={() => setCollapseTwo(!collapseTwo)} className={`${collapseTwo === true && 'pb-0'} w-full p-[16px] cursor-pointer flex items-center justify-between`}>
+                            {/* title */}
+                            <h2 className='font-bold'>Additional Details</h2>
+                            {/* arrow icons */}
+                            <span className={`${collapseTwo === true ? 'rotate-0' : 'rotate-180'} transition-all duration-300`}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <g id="icon/chevron-arrow-down">
+                                        <path id="Vector" d="M19.92 16.0475L13.4 9.52751C12.63 8.75751 11.37 8.75751 10.6 9.52751L4.08002 16.0475" stroke="#0B0B0C" strokeWidth="1.2" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                                    </g>
+                                </svg>
+                            </span>
                         </div>
-                    }
-                </div>
-            </div>
 
-            {/* fixed button in button */}
-            <div className='fixed bottom-0 left-0 right-0 w-full h-[62px] p-[10px_16px] flex items-center justify-center bg-white' style={{ boxShadow: ' 0px 0px 8px 0px rgba(78, 78, 78, 0.25)' }}>
+                        {/* contents */}
+                        {
+                            collapseTwo === true &&
+                            <div className='p-[16px] flex flex-col gap-[16px]'>
+                                {/* Mode of Interaction */}
+                                <div className='flex w-fill flex-col gap-[5px]'>
+                                    {/* title */}
+                                    <h6>Business details</h6>
+                                    {/* input fields */}
+                                    <DropdownSelectTwo setChangeInput={setBusinessDetailsValue} disable={false} items={businessDetails} placeholder="CV" mandatory="" />
+                                </div>
+                                {/* Whom did you meet? */}
+                                <div className='flex w-fill flex-col gap-[5px]'>
+                                    {/* title */}
+                                    <h6>Brand model</h6>
+                                    {/* input fields */}
+                                    <DropdownSelectTwo setChangeInput={setBrandModelValue} disable={false} items={carModel} placeholder="XUV 300" mandatory="" />
+                                </div>
+                            </div>
+                        }
+                    </div>
 
-                <button type='button' onClick={() => navigate('/insight-details')} className='xs:w-[328px] w-full h-full p-[15px_30px] bg-[#FF3E5B] text-white font-semibold rounded-[5px] flex items-center justify-center'>
-                    Next
-                </button>
+                    {/* fixed button in button */}
+                    <div className='fixed bottom-0 left-0 right-0 w-full h-[62px] p-[10px_16px] flex items-center justify-center bg-white' style={{ boxShadow: ' 0px 0px 8px 0px rgba(78, 78, 78, 0.25)' }}>
+
+                        <button type='submit' onClick={() => navigate('/insight-details')} className='xs:w-[328px] w-full h-full p-[15px_30px] bg-[#FF3E5B] text-white font-semibold rounded-[5px] flex items-center justify-center'>
+                            Next
+                        </button>
+
+                    </div>
+                </form>
 
             </div>
         </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import { SlArrowLeft } from 'react-icons/sl'
 import { useNavigate } from 'react-router-dom';
@@ -36,10 +36,88 @@ function MyInsights() {
             date: '12 Nov, 23',
             time: '9:30 AM'
         }
+    ];
+
+
+
+    const [addTooltip, setAddTooltip] = useState(false);
+    const [isAnimation, setIsAnimation] = useState(false);
+    const [isLeftSide, setIsLeftSide] = useState(false);
+
+    const [showMyInsights, setShowMyInsights] = useState(false);
+
+    useEffect(() => {
+        const getTooltip = localStorage.getItem('showTooltip');
+
+
+        if (getTooltip === 'true') {
+            setAddTooltip(true);
+            setIsAnimation(true)
+            setShowMyInsights(true)
+        } else {
+            setAddTooltip(false);
+            setIsAnimation(false);
+            setShowMyInsights(false)
+        }
+    }, []);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsAnimation(false);
+            setIsLeftSide(true);
+            localStorage.removeItem('showTooltip');
+        }, 3000);
+    }, []);
+
+    const myNewInsightsList = [
+        {
+            id: 1,
+            title: 'Bolero Pick Up',
+            text: 'Seat belt is mandatory in rear seat which is not available in my vehicle GJ06TR0987, mode..',
+            date: '12 Nov, 23',
+            time: '9:30 AM'
+        }
     ]
+
     return (
         <div className='w-full h-full'>
             <Header />
+
+            {/* tooltips */}
+            {
+                // addTooltip === true &&
+                <div className='fixed top-[73px] -right-2'>
+                    <div className='relative'>
+                        {/* ${isAnimation === true ? 'right-[5px]' : ''} */}
+                        <div
+                            id={`${isAnimation === true ? 'right-to-left' : `${isLeftSide === true && 'left-to-right'}`}`}
+                            className={`absolute transition-all flex items-center justify-between gap-[11px] bg-white p-[10px_17px] border-b-[1px] border-[#00A310] rounded-[6px] z-50 w-[300px] h-max`} style={{ boxShadow: "0px 0px 8px 0px rgba(78, 78, 78, 0.25)" }}>
+                            {/* left side icons */}
+                            <div className='flex items-center gap-[6px]'>
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                                        <path fillRule="evenodd" clipRule="evenodd" d="M10 3.5C6.13401 3.5 3 6.63401 3 10.5C3 14.366 6.13401 17.5 10 17.5C13.866 17.5 17 14.366 17 10.5C17 6.63401 13.866 3.5 10 3.5ZM2 10.5C2 6.08172 5.58172 2.5 10 2.5C14.4183 2.5 18 6.08172 18 10.5C18 14.9183 14.4183 18.5 10 18.5C5.58172 18.5 2 14.9183 2 10.5ZM14.5345 7.66131C14.7215 7.86444 14.7085 8.18076 14.5054 8.36781L9.0755 13.3678C8.88269 13.5454 8.58551 13.5439 8.39448 13.3644L5.49101 10.6372C5.28974 10.4481 5.27983 10.1317 5.46889 9.9304C5.65795 9.72913 5.97438 9.71923 6.17566 9.90829L8.74019 12.3172L13.828 7.63219C14.0311 7.44513 14.3474 7.45817 14.5345 7.66131Z" fill="#70C922" />
+                                    </svg>
+                                </span>
+                                {/* headers */}
+                                <div className='flex items-center justify-between w-full'>
+                                    <h4 className='text-[#00A310] text-[14px]'>New insight added successfully</h4>
+                                </div>
+                            </div>
+                            {/* right side contents */}
+                            <div>
+                                <span onClick={() => setIsLeftSide(true)} className='cursor-pointer'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
+                                        <path fillRule="evenodd" clipRule="evenodd" d="M1.50254 2.00254C1.63922 1.86585 1.86083 1.86585 1.99751 2.00254L7.00002 7.00505L12.0025 2.00254C12.1392 1.86585 12.3608 1.86585 12.4975 2.00254C12.6342 2.13922 12.6342 2.36083 12.4975 2.49751L7.495 7.50002L12.4975 12.5025C12.6342 12.6392 12.6342 12.8608 12.4975 12.9975C12.3608 13.1342 12.1392 13.1342 12.0025 12.9975L7.00002 7.995L1.99751 12.9975C1.86083 13.1342 1.63922 13.1342 1.50254 12.9975C1.36585 12.8608 1.36585 12.6392 1.50254 12.5025L6.50505 7.50002L1.50254 2.49751C1.36585 2.36083 1.36585 2.13922 1.50254 2.00254Z" fill="black" />
+                                    </svg>
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
             {/* contents */}
             <div className='w-full p-[19px_16px] pb-[6rem] max-w-[1260px] mx-auto '>
                 {/* title with filter icons */}
@@ -60,8 +138,19 @@ function MyInsights() {
                     </div>
                 </div>
 
+                {
+                    showMyInsights === true &&
+                    <div className='mb-[17px]'>
+                        {
+                            myNewInsightsList?.map((ele) => {
+                                return <MyInsightsBox key={ele.id} data={ele} />
+                            })
+                        }
+                    </div>
+                }
+
                 {/* my insights lists */}
-                <div className='w-full h-full grid sm:grid-cols-2 grid-cols-1 gap-[20px] items-center'>
+                <div className='w-full h-full grid grid-cols-1 gap-[20px] items-center'>
                     {
                         myInsightsList?.map((ele) => {
                             return <MyInsightsBox key={ele.id} data={ele} />

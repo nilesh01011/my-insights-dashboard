@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
 import Stepper from '../components/Stepper';
@@ -11,6 +11,8 @@ function InsightDetails() {
     const [addObservation, setAddObservation] = useState(true);
 
     const [collapseTwo, setCollapseTwo] = useState(true);
+
+    const [showMoreObservation, setShowMoreObservation] = useState(false);
 
     return (
         <div className='w-full h-full'>
@@ -25,7 +27,7 @@ function InsightDetails() {
                         New Insights
                     </h1>
                     {/* filter icons */}
-                    <h6 onClick={() => navigate('/')} className='font-bold cursor-pointer text-[#FF3E5B]'>
+                    <h6 onClick={() => navigate('/my-insights')} className='font-bold cursor-pointer text-[#FF3E5B]'>
                         Close
                     </h6>
                 </div>
@@ -74,81 +76,83 @@ function InsightDetails() {
                     </div>
                 </div>
 
+                {/* {
+                    showMoreObservation === true &&
+                    <div id="appendObservations" ref={addMoreObservation} className='w-full h-full flex flex-col gap-[20px]'>
+
+                    </div>
+                } */}
+
                 {/* + Add observations */}
-                <div onClick={() => setAddObservation(!addObservation)} className='w-full my-[12px] flex items-center gap-[8px] cursor-pointer'>
+                <div className='w-full my-[12px] flex items-center gap-[8px] cursor-pointer'>
                     <span className='w-[24px] h-[24px] rounded-full bg-[#FF3E5B] flex items-center justify-center'>
                         <HiOutlinePlus size={14} className='text-white' />
                     </span>
                     <p className='font-bold text-[#FF3E5B] text-[14px]'>Add Observation</p>
                 </div>
 
-                {
-                    addObservation === true &&
-                    <>
-                        {/* Additional Details */}
-                        <div className='w-full h-full bg-white rounded-[10px] mt-[20px]'>
-                            {/* header */}
-                            <div onClick={() => setCollapseTwo(!collapseTwo)} className={`${collapseTwo === true && 'pb-0'} w-full p-[16px] cursor-pointer flex items-center justify-between`}>
-                                {/* title */}
-                                <h2 className='font-bold'>Additional Details</h2>
-                                {/* arrow icons */}
-                                <span className={`${collapseTwo === true && 'rotate-180'} transition-all duration-300`}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <g id="icon/chevron-arrow-down">
-                                            <path id="Vector" d="M19.92 16.0475L13.4 9.52751C12.63 8.75751 11.37 8.75751 10.6 9.52751L4.08002 16.0475" stroke="#0B0B0C" strokeWidth="1.2" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-                                        </g>
-                                    </svg>
-                                </span>
+                {/* Additional Details */}
+                <div className='w-full h-full bg-white rounded-[10px] mt-[20px]'>
+                    {/* header */}
+                    <div onClick={() => setCollapseTwo(!collapseTwo)} className={`${collapseTwo === true && 'pb-0'} w-full p-[16px] cursor-pointer flex items-center justify-between`}>
+                        {/* title */}
+                        <h2 className='font-bold'>Additional Details</h2>
+                        {/* arrow icons */}
+                        <span className={`${collapseTwo === true ? 'rotate-0' : 'rotate-180'} transition-all duration-300`}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <g id="icon/chevron-arrow-down">
+                                    <path id="Vector" d="M19.92 16.0475L13.4 9.52751C12.63 8.75751 11.37 8.75751 10.6 9.52751L4.08002 16.0475" stroke="#0B0B0C" strokeWidth="1.2" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                                </g>
+                            </svg>
+                        </span>
+                    </div>
+
+                    {/* contents */}
+                    {
+                        collapseTwo === true &&
+                        <div className='flex flex-col gap-[16px] bg-white divide-y-[1px] divide-[#DEDEDE] p-[16px] rounded-[10px]'>
+                            {/* Additional Details */}
+                            <div className='w-full h-full'>
+                                {/* Supporting Proof */}
+                                <div className='flex w-fill flex-col gap-[5px]'>
+                                    {/* title */}
+                                    <h6 className='my-[12px]'>Supporting Proof</h6>
+                                    {/* input fields */}
+                                    <form onClick={() => document.querySelector('#input-fieldsOne').click()} className='w-full flex items-center relative justify-center p-[14px] rounded-[10px] border-[1px] border-dashed border-[#707070] cursor-pointer'>
+                                        <input type="file" id="input-fieldsOne" className="w-full text-slate-500 file:hidden appearance-none hidden" hidden />
+
+                                        <p className='w-full flex items-center justify-center flex-col gap-[8px]'>
+                                            <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                    <path d="M7.50001 8.33333C8.42049 8.33333 9.16668 7.58714 9.16668 6.66667C9.16668 5.74619 8.42049 5 7.50001 5C6.57954 5 5.83334 5.74619 5.83334 6.66667C5.83334 7.58714 6.57954 8.33333 7.50001 8.33333Z" stroke="#FF3E5B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                                                    <path d="M10.8333 1.66667H7.49999C3.33332 1.66667 1.66666 3.33333 1.66666 7.5V12.5C1.66666 16.6667 3.33332 18.3333 7.49999 18.3333H12.5C16.6667 18.3333 18.3333 16.6667 18.3333 12.5V8.33333" stroke="#FF3E5B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                                                    <path d="M13.125 4.16667H17.7083" stroke="#FF3E5B" strokeWidth="1.2" strokeLinecap="round" />
+                                                    <path d="M15.4167 6.45833V1.875" stroke="#FF3E5B" strokeWidth="1.2" strokeLinecap="round" />
+                                                    <path d="M2.22501 15.7917L6.33334 13.0333C6.99167 12.5917 7.94167 12.6417 8.53334 13.15L8.80834 13.3917C9.45834 13.95 10.5083 13.95 11.1583 13.3917L14.625 10.4167C15.275 9.85833 16.325 9.85833 16.975 10.4167L18.3333 11.5833" stroke="#FF3E5B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                                                </svg>
+                                            </span>
+                                            <span className='text-[14px] text-[#FF3E5B]'>Upload Image/ Video/ Audio</span>
+                                        </p>
+                                    </form>
+                                </div>
                             </div>
 
-                            {/* contents */}
-                            {
-                                collapseTwo === true &&
-                                <div className='flex flex-col gap-[16px] bg-white divide-y-[1px] divide-[#DEDEDE] p-[16px] rounded-[10px]'>
-                                    {/* Additional Details */}
-                                    <div className='w-full h-full'>
-                                        {/* Supporting Proof */}
-                                        <div className='flex w-fill flex-col gap-[5px]'>
-                                            {/* title */}
-                                            <h6 className='my-[12px]'>Supporting Proof</h6>
-                                            {/* input fields */}
-                                            <form onClick={() => document.querySelector('#input-fieldsOne').click()} className='w-full flex items-center relative justify-center p-[14px] rounded-[10px] border-[1px] border-dashed border-[#707070] cursor-pointer'>
-                                                <input type="file" id="input-fieldsOne" className="w-full text-slate-500 file:hidden appearance-none hidden" hidden />
+                            {/* Tag Business Function* */}
+                            <div>
+                                {/* title */}
+                                <h6 className='my-[12px]'>Tag Business Function<span className='text-[#FF3E5B]'>*</span></h6>
 
-                                                <p className='w-full flex items-center justify-center flex-col gap-[8px]'>
-                                                    <span>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                                            <path d="M7.50001 8.33333C8.42049 8.33333 9.16668 7.58714 9.16668 6.66667C9.16668 5.74619 8.42049 5 7.50001 5C6.57954 5 5.83334 5.74619 5.83334 6.66667C5.83334 7.58714 6.57954 8.33333 7.50001 8.33333Z" stroke="#FF3E5B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                                                            <path d="M10.8333 1.66667H7.49999C3.33332 1.66667 1.66666 3.33333 1.66666 7.5V12.5C1.66666 16.6667 3.33332 18.3333 7.49999 18.3333H12.5C16.6667 18.3333 18.3333 16.6667 18.3333 12.5V8.33333" stroke="#FF3E5B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                                                            <path d="M13.125 4.16667H17.7083" stroke="#FF3E5B" strokeWidth="1.2" strokeLinecap="round" />
-                                                            <path d="M15.4167 6.45833V1.875" stroke="#FF3E5B" strokeWidth="1.2" strokeLinecap="round" />
-                                                            <path d="M2.22501 15.7917L6.33334 13.0333C6.99167 12.5917 7.94167 12.6417 8.53334 13.15L8.80834 13.3917C9.45834 13.95 10.5083 13.95 11.1583 13.3917L14.625 10.4167C15.275 9.85833 16.325 9.85833 16.975 10.4167L18.3333 11.5833" stroke="#FF3E5B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                                                        </svg>
-                                                    </span>
-                                                    <span className='text-[14px] text-[#FF3E5B]'>Upload Image/ Video/ Audio</span>
-                                                </p>
-                                            </form>
-                                        </div>
-                                    </div>
-
-                                    {/* Tag Business Function* */}
-                                    <div>
-                                        {/* title */}
-                                        <h6 className='my-[12px]'>Tag Business Function<span className='text-[#FF3E5B]'>*</span></h6>
-
-                                        <div className='w-full flex gap-[12px] flex-wrap'>
-                                            <span className='border-[1px] border-[#FF3E5B] bg-transparent p-[8px_18px] rounded-full text-[#FF3E5B] font-[600]'>Product</span>
-                                            <span className='border-[1px] border-[#FF3E5B] bg-transparent p-[8px_18px] rounded-full text-[#FF3E5B] font-[600]'>Sales</span>
-                                            <span className='border-[1px] border-[#FF3E5B] bg-transparent p-[8px_18px] rounded-full text-[#FF3E5B] font-[600]'>Marketing</span>
-                                            <span className='border-[1px] border-[#8E8585] bg-transparent p-[8px_18px] rounded-full text-[#8E8585] font-[600]'>Pre Sales</span>
-                                            <span className='border-[1px] border-[#8E8585] bg-transparent p-[8px_18px] rounded-full text-[#8E8585] font-[600]'>After Sales</span>
-                                        </div>
-                                    </div>
+                                <div className='w-full flex gap-[12px] flex-wrap'>
+                                    <span className='border-[1px] border-[#FF3E5B] bg-transparent p-[8px_18px] rounded-full text-[#FF3E5B] font-[600]'>Product</span>
+                                    <span className='border-[1px] border-[#FF3E5B] bg-transparent p-[8px_18px] rounded-full text-[#FF3E5B] font-[600]'>Sales</span>
+                                    <span className='border-[1px] border-[#FF3E5B] bg-transparent p-[8px_18px] rounded-full text-[#FF3E5B] font-[600]'>Marketing</span>
+                                    <span className='border-[1px] border-[#8E8585] bg-transparent p-[8px_18px] rounded-full text-[#8E8585] font-[600]'>Pre Sales</span>
+                                    <span className='border-[1px] border-[#8E8585] bg-transparent p-[8px_18px] rounded-full text-[#8E8585] font-[600]'>After Sales</span>
                                 </div>
-                            }
+                            </div>
                         </div>
-                    </>
-                }
+                    }
+                </div>
             </div>
 
             {/* fixed button in button */}
