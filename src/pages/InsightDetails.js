@@ -1,18 +1,67 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
 import Stepper from '../components/Stepper';
 import { HiOutlinePlus } from 'react-icons/hi';
+import ActiveTags from '../components/ActiveTags';
+import VideoExplain from '../components/VideoExplain';
 
 function InsightDetails() {
     const navigate = useNavigate();
-    const [isActiveTab, setIsActiveTab] = useState(2);
 
-    const [addObservation, setAddObservation] = useState(true);
+    const [firstSuppObservation, setFirstSuppObservation] = useState('');
 
+    // + Add Observation
+    const [showMoreObservation, setShowMoreObservation] = useState(false);
+    const [rows, setRows] = useState([]);
+    // textarea changed event
+    const handleTextAreaChanged = (e, id) => {
+        const inputText = e.target.value;
+        const updatedRows = rows.map((item) => item.id === id ? { ...item, text: inputText } : item);
+
+        setRows(updatedRows);
+    }
+    // rows count
+    const rowsCount = rows.length;
+    // set row event
+    const handleMoreRows = () => {
+        const newRow = { id: rowsCount + 2, title: '' };
+        setRows([...rows, newRow]);
+    }
+    // + Add Observation button
+    const handleAddObservation = () => {
+        setShowMoreObservation(true);
+        handleMoreRows()
+    }
+
+    // Additional Details collapse event
     const [collapseTwo, setCollapseTwo] = useState(true);
 
-    const [showMoreObservation, setShowMoreObservation] = useState(false);
+    // tabs Tag Business Function
+    const [isSelectedTag, setIsSelectedTag] = useState([]);
+
+    const tagsList = [
+        {
+            id: 1,
+            name: 'Product'
+        },
+        {
+            id: 2,
+            name: 'Sales'
+        },
+        {
+            id: 3,
+            name: 'Marketing'
+        },
+        {
+            id: 4,
+            name: 'Pre Sales'
+        },
+        {
+            id: 5,
+            name: 'After Sales'
+        },
+    ]
 
     return (
         <div className='w-full h-full'>
@@ -21,26 +70,29 @@ function InsightDetails() {
             {/* my insights lists */}
             <div className='w-full p-[19px_16px] pb-[6rem] max-w-[1260px] mx-auto '>
                 {/* title with filter icons */}
-                <div className='w-full flex items-center justify-between mb-[17px]'>
+                <div className='w-full flex items-center justify-between mb-[6px]'>
                     {/* title */}
                     <h1 className='font-bold text-[20px] flex items-center gap-[12px]'>
                         New Insights
                     </h1>
                     {/* filter icons */}
-                    <h6 onClick={() => navigate('/my-insights')} className='font-bold cursor-pointer text-[#FF3E5B]'>
+                    <h6 onClick={() => navigate('/my-insights')} className='font-bold cursor-pointer'>
                         Close
                     </h6>
                 </div>
+                {/* video links */}
+                <VideoExplain />
+                {/* line */}
+                <div className='w-full h-[1px] bg-[#8E8585]/20 mb-[25px] mt-[16px]'></div>
                 {/* stepper steps */}
                 <div className='mb-[17px]'>
                     <Stepper steps={2} />
                 </div>
 
-
                 {/* Additional Details */}
-                <div className='w-full h-full bg-white rounded-[10px] my-[20px]'>
+                <div className='w-full h-full bg-white rounded-[10px] mb-[20px]'>
                     {/* header */}
-                    <div className={`w-full p-[16px] cursor-pointer flex items-center justify-between`}>
+                    <div className={`w-full p-[16px] flex items-center justify-between`}>
                         {/* title */}
                         <h2 className='font-bold'>Insight Statement</h2>
                     </div>
@@ -68,23 +120,56 @@ function InsightDetails() {
                         <h6>Write down your observation<span className='text-red-500'>*</span></h6>
                         {/* input fields */}
                         <div className='relative'>
-                            <textarea placeholder='Type here...' className='w-full focus:outline-none border-[1px] border-[#DEDEDE] p-[10px] resize-none rounded-[5px]' maxLength={300}></textarea>
+                            <textarea placeholder='Type here...' onChange={(e) => setFirstSuppObservation(e.target.value)} className='w-full focus:outline-none border-[1px] border-[#DEDEDE] p-[10px] resize-none rounded-[5px]' maxLength={300}></textarea>
                             <span className='absolute right-[10px] top-[20%]'>
                                 <img src='./images/speakIcons.svg' alt='speakIcons' className='' />
                             </span>
                         </div>
+                        {/* input length counts */}
+                        <div className='relative'>
+                            <p className='absolute bottom-[15px] text-[#8E8585] right-[10px] text-[14px]'>{firstSuppObservation ? firstSuppObservation.length : 0}/300</p>
+                        </div>
                     </div>
                 </div>
 
-                {/* {
+                {
                     showMoreObservation === true &&
-                    <div id="appendObservations" ref={addMoreObservation} className='w-full h-full flex flex-col gap-[20px]'>
+                    <div className='w-full h-full flex flex-col gap-[20px] mb-[20px]'>
+                        {
+                            rows.map((ele, index) => {
+                                return (
+                                    <div key={ele.id} className='w-full h-full bg-white rounded-[10px]'>
+                                        {/* header */}
+                                        <div className={`w-full p-[16px] cursor-pointer flex items-center justify-between`}>
+                                            {/* title */}
+                                            <h2 className='font-bold'>Supporting Observation {ele.id}</h2>
+                                        </div>
 
+                                        {/* Mode of Interaction */}
+                                        <div className='flex w-fill flex-col gap-[5px] p-[16px] pt-0'>
+                                            {/* title */}
+                                            <h6>Write down your observation<span className='text-red-500'>*</span></h6>
+                                            {/* input fields */}
+                                            <div className='relative'>
+                                                <textarea onChange={(e) => handleTextAreaChanged(e, ele.id)} placeholder='Type here...' className='w-full focus:outline-none border-[1px] border-[#DEDEDE] p-[10px] resize-none rounded-[5px]' maxLength={300}></textarea>
+                                                <span className='absolute right-[10px] top-[20%]'>
+                                                    <img src='./images/speakIcons.svg' alt='speakIcons' className='' />
+                                                </span>
+                                            </div>
+                                            {/* input length counts */}
+                                            <div className='relative'>
+                                                <p className='absolute bottom-[15px] text-[#8E8585] right-[10px] text-[14px]'>{ele.text ? ele.text.length : 0}/300</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
                     </div>
-                } */}
+                }
 
                 {/* + Add observations */}
-                <div className='w-full my-[12px] flex items-center gap-[8px] cursor-pointer'>
+                <div onClick={handleAddObservation} className='w-full my-[12px] flex items-center gap-[8px] cursor-pointer'>
                     <span className='w-[24px] h-[24px] rounded-full bg-[#FF3E5B] flex items-center justify-center'>
                         <HiOutlinePlus size={14} className='text-white' />
                     </span>
@@ -143,11 +228,26 @@ function InsightDetails() {
                                 <h6 className='my-[12px]'>Tag Business Function<span className='text-[#FF3E5B]'>*</span></h6>
 
                                 <div className='w-full flex gap-[12px] flex-wrap'>
-                                    <span className='border-[1px] border-[#FF3E5B] bg-transparent p-[8px_18px] rounded-full text-[#FF3E5B] font-[600]'>Product</span>
+                                    {/* <span className='border-[1px] border-[#FF3E5B] bg-transparent p-[8px_18px] rounded-full text-[#FF3E5B] font-[600]'>Product</span>
                                     <span className='border-[1px] border-[#FF3E5B] bg-transparent p-[8px_18px] rounded-full text-[#FF3E5B] font-[600]'>Sales</span>
                                     <span className='border-[1px] border-[#FF3E5B] bg-transparent p-[8px_18px] rounded-full text-[#FF3E5B] font-[600]'>Marketing</span>
                                     <span className='border-[1px] border-[#8E8585] bg-transparent p-[8px_18px] rounded-full text-[#8E8585] font-[600]'>Pre Sales</span>
-                                    <span className='border-[1px] border-[#8E8585] bg-transparent p-[8px_18px] rounded-full text-[#8E8585] font-[600]'>After Sales</span>
+                                    <span className='border-[1px] border-[#8E8585] bg-transparent p-[8px_18px] rounded-full text-[#8E8585] font-[600]'>After Sales</span> */}
+
+                                    {/* {
+                                        tagsList?.map((ele) => {
+                                            const isActive = isSelectedTag.includes(ele.id);
+                                            return (
+                                                <span key={ele.id} onClick={() => setIsSelectedTag([...isSelectedTag, ele.id])} className={`border-[1px] border-[#FF3E5B] bg-transparent p-[8px_18px] rounded-full text-[#FF3E5B] font-[600]`}>{ele.name}</span>
+                                            )
+                                        })
+                                    } */}
+
+                                    {
+                                        tagsList?.map((ele) => (
+                                            <ActiveTags key={ele.id} item={ele.name} isSelectedTag={isSelectedTag} setIsSelectedTag={setIsSelectedTag} />
+                                        ))
+                                    }
                                 </div>
                             </div>
                         </div>

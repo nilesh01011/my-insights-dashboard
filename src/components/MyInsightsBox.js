@@ -1,8 +1,16 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function MyInsightsBox({ data }) {
+
+    const navigate = useNavigate();
+
+    const handleLinksRouter = () => {
+        navigate(data?.links);
+    }
+
     return (
-        <div className='w-full h-[124px] rounded-[10px] p-[12px_16px] bg-white flex items-center gap-[8ps] cursor-pointer shadow-md'>
+        <div onClick={() => handleLinksRouter()} className='w-full h-[124px] rounded-[10px] p-[12px_16px] bg-white flex items-center gap-[8ps] cursor-pointer shadow-md'>
             {/* left side */}
             <div className='w-full flex flex-col gap-[8px]'>
                 <h1 className='font-bold'>{data.title}</h1>

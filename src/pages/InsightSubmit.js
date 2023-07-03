@@ -5,6 +5,7 @@ import Stepper from '../components/Stepper';
 import InputFields from '../components/InputFields';
 import DropdownSelect from '../components/DropdownSelect';
 import DropdownSelectTwo from '../components/DropdownSelectTwo';
+import VideoExplain from '../components/VideoExplain';
 
 function InsightSubmit() {
     const navigate = useNavigate();
@@ -29,16 +30,20 @@ function InsightSubmit() {
             {/* my insights lists */}
             <div className='w-full p-[19px_16px] pb-[6rem] max-w-[1260px] mx-auto '>
                 {/* title with filter icons */}
-                <div className='w-full flex items-center justify-between mb-[17px]'>
+                <div className='w-full flex items-center justify-between mb-[6px]'>
                     {/* title */}
                     <h1 className='font-bold text-[20px] flex items-center gap-[12px]'>
                         New Insights
                     </h1>
                     {/* filter icons */}
-                    <h6 onClick={() => navigate('/my-insights')} className='font-bold cursor-pointer text-[#FF3E5B]'>
+                    <h6 onClick={() => navigate('/my-insights')} className='font-bold cursor-pointer'>
                         Close
                     </h6>
                 </div>
+                {/* video links */}
+                <VideoExplain />
+                {/* line */}
+                <div className='w-full h-[1px] bg-[#8E8585]/20 mb-[25px] mt-[16px]'></div>
                 {/* stepper steps */}
                 <div className='mb-[17px]'>
                     <Stepper steps={3} />

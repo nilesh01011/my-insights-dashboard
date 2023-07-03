@@ -20,9 +20,9 @@ function SummaryDetails() {
             <div className='w-full p-[19px_16px] max-w-[1260px] mx-auto'>
 
                 {/* title with filter icons */}
-                <div className='w-full flex items-center justify-between mb-[17px]'>
+                <div className='w-full flex justify-between mb-[17px]'>
                     {/* title */}
-                    <div className='flex md:items-center gap-[6px] md:flex-row flex-col'>
+                    <div className='flex md:items-center md:gap-[8px] gap-[6px] md:flex-row flex-col'>
                         <h1 className='font-bold text-[20px] flex items-center gap-[12px]'>
                             Bolero Pick Up
                         </h1>
@@ -33,7 +33,8 @@ function SummaryDetails() {
                         </div>
                     </div>
                     {/* filter icons */}
-                    <h6 onClick={() => navigate('/')} className='font-bold cursor-pointer text-[#FF3E5B]'>
+                    {/* text-[#FF3E5B] */}
+                    <h6 onClick={() => navigate('/')} className='font-bold cursor-pointer'>
                         Close
                     </h6>
                 </div>

@@ -75,7 +75,8 @@ function MyInsights() {
             title: 'Bolero Pick Up',
             text: 'Seat belt is mandatory in rear seat which is not available in my vehicle GJ06TR0987, mode..',
             date: '12 Nov, 23',
-            time: '9:30 AM'
+            time: '9:30 AM',
+            links: '/summary-my-insights'
         }
     ]
 
@@ -85,7 +86,6 @@ function MyInsights() {
 
             {/* tooltips */}
             {
-                // addTooltip === true &&
                 <div className='fixed top-[73px] -right-2'>
                     <div className='relative'>
                         {/* ${isAnimation === true ? 'right-[5px]' : ''} */}
@@ -127,7 +127,7 @@ function MyInsights() {
                         <span onClick={() => navigate('/')} className='cursor-pointer'>
                             <SlArrowLeft size={18} />
                         </span>
-                        My Insights
+                        My Insights {showMyInsights === true ? '(5)' : '(4)'}
                     </h1>
                     {/* filter icons */}
                     <div className='w-[40px] h-[40px] rounded-[5px] bg-white cursor-pointer flex items-center justify-center'>
