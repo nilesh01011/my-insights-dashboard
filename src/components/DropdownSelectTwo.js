@@ -20,10 +20,10 @@ let useClickOutSide = (handler) => {
     return domNode
 }
 
-function DropdownSelectTwo({ setChangeInput, items, placeholder, mandatory, disable }) {
+function DropdownSelectTwo({ setChangeInput, items, placeholder, mandatory, disable, activeInput }) {
     const [isOpen, setIsOpen] = useState(false);
 
-    const [selected, setSelected] = useState('');
+    const [selected, setSelected] = useState(activeInput ? activeInput : '');
 
     const selectBoxText = (ele) => {
         setSelected(ele.target.innerHTML);

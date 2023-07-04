@@ -9,6 +9,11 @@ import { HiOutlinePlus } from 'react-icons/hi';
 import VideoExplain from '../components/VideoExplain';
 
 function NewInsights() {
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const navigate = useNavigate();
 
     const [collapseOne, setCollapseOne] = useState(true);
@@ -127,6 +132,94 @@ function NewInsights() {
         }
     ];
 
+    const selectCompetitor = [
+        {
+            id: 1,
+            name: "KIA"
+        },
+        {
+            id: 2,
+            name: "TATA"
+        },
+        {
+            id: 3,
+            name: "Suzuki"
+        }
+    ];
+
+    const vehicleModel = [
+        {
+            id: 1,
+            name: "Seltos"
+        },
+        {
+            id: 2,
+            name: "Seltos 1"
+        },
+        {
+            id: 3,
+            name: "Seltos 2"
+        }
+    ];
+
+    const customerType = [
+        {
+            id: 1,
+            name: 'Owner',
+        },
+        {
+            id: 2,
+            name: 'Owner 2',
+        },
+        {
+            id: 3,
+            name: 'Owner 3',
+        },
+        {
+            id: 4,
+            name: 'Owner 4',
+        }
+    ];
+
+
+    const yearPurchase = [
+        {
+            id: 1,
+            name: '2019',
+        },
+        {
+            id: 2,
+            name: '2018',
+        },
+        {
+            id: 3,
+            name: '2017',
+        },
+        {
+            id: 4,
+            name: '2016',
+        }
+    ];
+
+    const kmDriven = [
+        {
+            id: 1,
+            name: '10000',
+        },
+        {
+            id: 2,
+            name: '7500',
+        },
+        {
+            id: 3,
+            name: '3000',
+        },
+        {
+            id: 4,
+            name: '11000',
+        }
+    ];
+
     const [interationInput, setInterationInput] = useState('');
     const [modelInterationInput, setModelInterationInput] = useState('');
     const [whomMeetInput, setWhomMeetInput] = useState('')
@@ -140,6 +233,12 @@ function NewInsights() {
     const [businessDetailsValue, setBusinessDetailsValue] = useState('')
 
     const [brandModelValue, setBrandModelValue] = useState('')
+
+    const [selectCompetitorValue, setSelectCompetitorValue] = useState('')
+
+    const [vehicleModelValue, setVehicleModelValue] = useState('')
+
+    const [customerValue, setCustomerValue] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -159,6 +258,10 @@ function NewInsights() {
         console.log('businessDetailsValue:', businessDetailsValue)
 
         console.log('brandModelValue:', brandModelValue)
+
+        console.log('selectCompetitorValue:', selectCompetitorValue)
+
+        console.log('vehicleModelValue:', vehicleModelValue)
     }
 
 
@@ -213,7 +316,7 @@ function NewInsights() {
                                 {/* Interaction Title */}
                                 <div className='flex w-fill flex-col gap-[5px]'>
                                     {/* title */}
-                                    <h6>Interaction Title</h6>
+                                    <h6>Interaction Title<span className='text-[#FF3E5B]'>*</span></h6>
                                     {/* input fields */}
                                     <InputFields setInterationInput={setInterationInput} placeholder='Ex. XUV 700 intender' />
                                 </div>
@@ -231,22 +334,41 @@ function NewInsights() {
                                     {/* input fields */}
                                     <DropdownSelect setChangeInput={setWhomMeetInput} items={customer} disable={false} placeholder="Customer" mandatory="" />
                                 </div>
-
-                                {/* Location */}
+                                {/* Select Competitor */}
                                 <div className='flex w-fill flex-col gap-[5px]'>
                                     {/* title */}
-                                    <h6>Location</h6>
+                                    <h6>Select Competitor</h6>
+                                    {/* input fields */}
+                                    <DropdownSelect setChangeInput={setSelectCompetitorValue} items={selectCompetitor} disable={false} placeholder="KIA" mandatory="" />
+                                </div>
+                                {/* Vehicle Model/Variant */}
+                                <div className='flex w-fill flex-col gap-[5px]'>
+                                    {/* title */}
+                                    <h6>Vehicle Model/Variant</h6>
+                                    {/* input fields */}
+                                    <DropdownSelect setChangeInput={setVehicleModelValue} items={vehicleModel} disable={false} placeholder="Seltos" mandatory="" />
+                                </div>
 
-                                    <div className='flex gap-[12px] flex-col'>
-                                        <div className='w-full flex items-center gap-[12px]'>
-                                            {/* input fields */}
-                                            <DropdownSelectTwo setChangeInput={setLocationValue} disable={false} items={zone} placeholder="Zone" mandatory="" />
-                                            {/* input fields */}
-                                            <DropdownSelectTwo setChangeInput={setLocationRO} disable={false} items={ro} placeholder="Ro" mandatory="" />
-                                        </div>
-                                        {/* input fields */}
-                                        <DropdownSelectTwo setChangeInput={setLocationPlace} disable={false} items={place} placeholder="Place" mandatory="" />
-                                    </div>
+                                {/* Customer Type */}
+                                <div className='flex w-fill flex-col gap-[5px]'>
+                                    {/* title */}
+                                    <h6>Customer Type</h6>
+                                    {/* input fields */}
+                                    <DropdownSelect setChangeInput={setCustomerValue} items={customerType} disable={false} placeholder="Owner" mandatory="" />
+                                </div>
+                                {/* Year of Purchase */}
+                                <div className='flex w-fill flex-col gap-[5px]'>
+                                    {/* title */}
+                                    <h6>Year of Purchase</h6>
+                                    {/* input fields */}
+                                    <DropdownSelect setChangeInput={setModelInterationInput} items={yearPurchase} disable={false} placeholder="2019" mandatory="" />
+                                </div>
+                                {/* Km Driven */}
+                                <div className='flex w-fill flex-col gap-[5px]'>
+                                    {/* title */}
+                                    <h6>Km Driven</h6>
+                                    {/* input fields */}
+                                    <DropdownSelect setChangeInput={setWhomMeetInput} items={kmDriven} disable={false} placeholder="10000" mandatory="" />
                                 </div>
                             </div>
                         }
@@ -272,17 +394,33 @@ function NewInsights() {
                         {
                             collapseTwo === true &&
                             <div className='p-[16px] flex flex-col gap-[16px]'>
+                                {/* Location */}
+                                <div className='flex w-fill flex-col gap-[5px]'>
+                                    {/* title */}
+                                    <h6>Location<span className='text-[#FF3E5B]'>*</span></h6>
+
+                                    <div className='flex gap-[12px] flex-col'>
+                                        <div className='w-full flex items-center gap-[12px]'>
+                                            {/* input fields */}
+                                            <DropdownSelectTwo setChangeInput={setLocationValue} disable={false} items={zone} placeholder="Zone" mandatory="" />
+                                            {/* input fields */}
+                                            <DropdownSelectTwo setChangeInput={setLocationRO} disable={false} items={ro} placeholder="Ro" mandatory="" />
+                                        </div>
+                                        {/* input fields */}
+                                        <DropdownSelectTwo setChangeInput={setLocationPlace} disable={false} items={place} placeholder="Place" mandatory="" />
+                                    </div>
+                                </div>
                                 {/* Mode of Interaction */}
                                 <div className='flex w-fill flex-col gap-[5px]'>
                                     {/* title */}
-                                    <h6>Business details</h6>
+                                    <h6>Business Division</h6>
                                     {/* input fields */}
                                     <DropdownSelectTwo setChangeInput={setBusinessDetailsValue} disable={false} items={businessDetails} placeholder="CV" mandatory="" />
                                 </div>
                                 {/* Whom did you meet? */}
                                 <div className='flex w-fill flex-col gap-[5px]'>
                                     {/* title */}
-                                    <h6>Brand model</h6>
+                                    <h6>Brand Model</h6>
                                     {/* input fields */}
                                     <DropdownSelectTwo setChangeInput={setBrandModelValue} disable={false} items={carModel} placeholder="XUV 300" mandatory="" />
                                 </div>

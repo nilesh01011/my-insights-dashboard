@@ -19,7 +19,7 @@ function BoxLinks({ data }) {
             <h3 className='mt-auto font-bold text-[18px] xs:w-full w-[92px]'>{data.title}</h3>
             {
                 data.tooltip &&
-                <div className='group-hover:block hidden w-max h-max p-[0.5rem_1.2rem] shadow-lg bg-white rounded-[10px] text-[#FF3E5B] absolute md:-right-[55%] -right-[65%] bottom-[36%]'>
+                <div className='group-hover:block hidden w-max h-max p-[0.5rem_1.2rem] shadow-lg bg-white rounded-[10px] text-[#FF3E5B] absolute md:-right-[55%] mobile:-right-[65%] -right-[75%] bottom-[36%]'>
                     Coming Soon...
 
                     <span className='absolute border-[9px] inner-block top-1/2 right-[99%] -translate-y-1/2 border-t-transparent border-b-transparent border-l-0 border-r-white shadow-2xl'></span>

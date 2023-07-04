@@ -12,6 +12,10 @@ function SummaryDetails() {
 
     const [collapseOne, setCollapseOne] = useState(true);
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <div className='w-full h-full'>
             <Header />

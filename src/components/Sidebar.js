@@ -23,7 +23,8 @@ function Sidebar({ isOpenSidebar, setIsOpenSidebar }) {
         {
             id: 4,
             name: 'Reports',
-            links: '#'
+            links: '#',
+            tooltip: true
         },
         // {
         //     id: 5,
@@ -49,7 +50,17 @@ function Sidebar({ isOpenSidebar, setIsOpenSidebar }) {
                         {
                             navLinks?.map((ele) => {
                                 return (
-                                    <Link key={ele.id} to={ele?.links} className={`font-bold text-[20px] ${ele.links === router.pathname ? 'text-[#FF3E5B]' : 'text-black'}`}>{ele?.name}</Link>
+                                    <div key={ele.id} className='relative group cursor-pointer z-[2]'>
+                                        <Link to={ele?.links} className={`font-bold text-[20px] ${ele.links === router.pathname ? 'text-[#FF3E5B]' : 'text-black'}`}>{ele?.name}</Link>
+                                        {
+                                            ele.tooltip === true &&
+                                            <div className='group-hover:block hidden w-max h-max p-[0.5rem_1.2rem] shadow-lg bg-[#FF3E5B] rounded-[10px] text-white absolute md:right-[15%] right-[25%] -bottom-[10%]'>
+                                                Coming Soon...
+
+                                                <span className='absolute border-[9px] inner-block top-1/2 right-[99%] -translate-y-1/2 border-t-transparent border-b-transparent border-l-0 border-r-[#FF3E5B] shadow-2xl'></span>
+                                            </div>
+                                        }
+                                    </div>
                                 )
                             })
                         }
