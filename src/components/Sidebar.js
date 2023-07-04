@@ -18,18 +18,18 @@ function Sidebar({ isOpenSidebar, setIsOpenSidebar }) {
         {
             id: 3,
             name: 'Insights Dashboard',
-            links: '#'
+            links: '/insights-dashboard'
         },
         {
             id: 4,
             name: 'Reports',
             links: '#'
         },
-        {
-            id: 5,
-            name: 'Ideas Generated',
-            links: '#'
-        }
+        // {
+        //     id: 5,
+        //     name: 'Ideas Generated',
+        //     links: '#'
+        // }
     ];
 
     return (

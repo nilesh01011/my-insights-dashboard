@@ -20,7 +20,7 @@ let useClickOutSide = (handler) => {
     return domNode
 }
 
-function DropdownSelect({ setChangeInput, items, placeholder, mandatory, disable }) {
+function DropdownSelect({ setChangeInput, items, placeholder, mandatory, disable, position, }) {
     const [isOpen, setIsOpen] = useState(false);
 
     const [selected, setSelected] = useState('');
@@ -45,9 +45,9 @@ function DropdownSelect({ setChangeInput, items, placeholder, mandatory, disable
                     </p>
 
                     {/* icons */}
-                    <div className={`h-[14px] flex items-center ${disable === false && isOpen && "rotate-180 transition-all"} transition-all text-black`}>
+                    <div className={`h-[14px] flex items-center ${disable === false && isOpen && "rotate-180 transition-all"} transition-all text-[#FF3E5B]`}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="10" viewBox="0 0 16 11" fill="none">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M15.058 0.571661C15.2393 0.741639 15.2485 1.02642 15.0785 1.20773L8.32849 8.40773C8.24342 8.49847 8.12458 8.54995 8.00019 8.54995C7.87581 8.54995 7.75697 8.49847 7.6719 8.40773L0.921904 1.20773C0.751924 1.02641 0.761111 0.741639 0.942422 0.57166C1.12373 0.401682 1.40851 0.410868 1.57849 0.592179L8.00019 7.442L14.4219 0.592179C14.5919 0.410869 14.8767 0.401682 15.058 0.571661Z" fill={`#635D5D`} />
+                            <path fillRule="evenodd" clipRule="evenodd" d="M15.058 0.571661C15.2393 0.741639 15.2485 1.02642 15.0785 1.20773L8.32849 8.40773C8.24342 8.49847 8.12458 8.54995 8.00019 8.54995C7.87581 8.54995 7.75697 8.49847 7.6719 8.40773L0.921904 1.20773C0.751924 1.02641 0.761111 0.741639 0.942422 0.57166C1.12373 0.401682 1.40851 0.410868 1.57849 0.592179L8.00019 7.442L14.4219 0.592179C14.5919 0.410869 14.8767 0.401682 15.058 0.571661Z" fill={`#FF3E5B`} />
                         </svg>
                     </div>
                 </div>
@@ -55,7 +55,7 @@ function DropdownSelect({ setChangeInput, items, placeholder, mandatory, disable
                 {/* all lists items */}
                 {
                     disable === false && isOpen && (
-                        <ul className={`z-20 divide-y-[1px] border-[1px] bg-[#F4F4F4] border-[#DEDEDE] divide-[#DEDEDE] ${isOpen ? 'opacity-1 duration-[1500ms]' : 'opacity-0 duration-[1500ms]'} relative w-full left-0 right-0 md:-top-[400%] -top-[370%] rounded-[5px] transition-all`}>
+                        <ul className={`z-20 divide-y-[1px] border-[1px] bg-[#F4F4F4] border-[#DEDEDE] divide-[#DEDEDE] ${isOpen ? 'opacity-1 duration-[1500ms]' : 'opacity-0 duration-[1500ms]'} relative w-full left-0 right-0 ${position === 'bottom' ? '-bottom-[20%]' : 'md:-top-[400%] -top-[370%]'} rounded-[5px] transition-all`}>
                             {items.map((ele, id) => {
                                 const lastArray = items.length - 1;
 

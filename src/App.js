@@ -6,6 +6,7 @@ import InsightDetails from './pages/InsightDetails';
 import InsightSubmit from './pages/InsightSubmit';
 // import SuccessfulMyInsight from './pages/SuccessfulMyInsight';
 import SummaryDetails from './pages/SummaryDetails';
+import InsightDashboard from './pages/InsightDashboard';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path='/insight-details-submit' element={<InsightSubmit />}></Route>
         {/* <Route path='/my-insights' element={<SuccessfulMyInsight />}></Route> */}
         <Route path='/summary-my-insights' element={<SummaryDetails />}></Route>
+        <Route path='/insights-dashboard' element={<InsightDashboard />}></Route>
       </Routes>
     </>
   );

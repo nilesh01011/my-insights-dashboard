@@ -41,7 +41,7 @@ function VideoExplain() {
                             isVideoPlaying === false &&
                             <div onClick={() => { setIsVideoPlaying(true) }} className='relative w-auto h-auto'>
                                 {/* thumbnail images */}
-                                <img src='./thumbnail.png' alt='thumbnail-images' className='1x1:w-[430px] md:w-[400px] w-[360px] object-contain rounded-[10px]' />
+                                <img src='./thumbnail.png' alt='thumbnail-images' className='1x1:w-[430px] md:w-[400px] w-[360px] h-[280px] object-cover rounded-[10px]' />
                                 {/* video icons */}
                                 <span className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
                                     <img src='./videoIcons.svg' alt='videoIcons-images' className='h-[95px] object-contain rounded-[10px]' />
@@ -51,8 +51,8 @@ function VideoExplain() {
                         {/* video */}
                         {
                             isVideoPlaying === true &&
-                            <div className='w-max h-max'>
-                                <video onClick={() => setIsVideoPlaying(false)} autoPlay muted loop className='1x1:w-[430px] md:w-[400px] w-[360px] h-[251px] object-cover rounded-[10px]'>
+                            <div className='w-max h-full'>
+                                <video onClick={() => setIsVideoPlaying(false)} autoPlay muted loop className='1x1:w-[430px] md:w-[400px] w-[360px] object-cover rounded-[10px]' style={{ height: '280px' }}>
                                     <source src='./xuv700_video.mp4'></source>
                                 </video>
                             </div>

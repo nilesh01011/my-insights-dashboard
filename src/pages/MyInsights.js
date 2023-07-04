@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import { SlArrowLeft } from 'react-icons/sl'
 import { useNavigate } from 'react-router-dom';
 import MyInsightsBox from '../components/MyInsightsBox';
+import FilterBox from '../components/FilterBox';
 
 function MyInsights() {
     const navigate = useNavigate();
@@ -37,8 +38,6 @@ function MyInsights() {
             time: '9:30 AM'
         }
     ];
-
-
 
     const [addTooltip, setAddTooltip] = useState(false);
     const [isAnimation, setIsAnimation] = useState(false);
@@ -130,12 +129,19 @@ function MyInsights() {
                         My Insights {showMyInsights === true ? '(5)' : '(4)'}
                     </h1>
                     {/* filter icons */}
-                    <div className='w-[40px] h-[40px] rounded-[5px] bg-white cursor-pointer flex items-center justify-center'>
-                        {/* icons */}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M2.39999 3.71169C2.39999 3.38032 2.66862 3.11169 2.99999 3.11169H21C21.3314 3.11169 21.6 3.38032 21.6 3.71169V6.88817C21.6 7.0536 21.5317 7.2117 21.4112 7.32509L14.85 13.5004V19.594C14.85 19.8265 14.7158 20.038 14.5055 20.1369L10.0055 22.2546C9.81962 22.342 9.60193 22.3284 9.4285 22.2183C9.25507 22.1082 9.14999 21.9171 9.14999 21.7117V13.5004L2.58878 7.32509C2.4683 7.2117 2.39999 7.0536 2.39999 6.88817V3.71169ZM3.59999 4.31169V6.62892L10.1612 12.8042C10.2817 12.9176 10.35 13.0757 10.35 13.2411V20.7662L13.65 19.2133V13.2411C13.65 13.0757 13.7183 12.9176 13.8388 12.8042L20.4 6.62892V4.31169H3.59999Z" fill="#FF3E5B" />
-                        </svg>
+                    <div className='md:hidden block'>
+                        <div className='w-[40px] h-[40px] rounded-[5px] bg-white cursor-pointer flex items-center justify-center'>
+                            {/* icons */}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                <path fillRule="evenodd" clipRule="evenodd" d="M2.39999 3.71169C2.39999 3.38032 2.66862 3.11169 2.99999 3.11169H21C21.3314 3.11169 21.6 3.38032 21.6 3.71169V6.88817C21.6 7.0536 21.5317 7.2117 21.4112 7.32509L14.85 13.5004V19.594C14.85 19.8265 14.7158 20.038 14.5055 20.1369L10.0055 22.2546C9.81962 22.342 9.60193 22.3284 9.4285 22.2183C9.25507 22.1082 9.14999 21.9171 9.14999 21.7117V13.5004L2.58878 7.32509C2.4683 7.2117 2.39999 7.0536 2.39999 6.88817V3.71169ZM3.59999 4.31169V6.62892L10.1612 12.8042C10.2817 12.9176 10.35 13.0757 10.35 13.2411V20.7662L13.65 19.2133V13.2411C13.65 13.0757 13.7183 12.9176 13.8388 12.8042L20.4 6.62892V4.31169H3.59999Z" fill="#FF3E5B" />
+                            </svg>
+                        </div>
                     </div>
+                </div>
+
+                {/* desktop side filter */}
+                <div className='md:block hidden my-[20px]'>
+                    <FilterBox />
                 </div>
 
                 {
