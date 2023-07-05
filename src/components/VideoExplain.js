@@ -7,8 +7,8 @@ function VideoExplain() {
 
     return (
         <>
-            <div onClick={() => setIsOpenVideoBanner(true)} className='flex items-center justify-end w-full'>
-                <button type='button' className='text-[#FF3E5B] text-[14px]'>See how to add insight </button>
+            <div className='flex items-center justify-end w-full'>
+                <button onClick={() => setIsOpenVideoBanner(true)} type='button' className='text-[#FF3E5B] text-[14px]'>See how to add insight </button>
             </div>
 
             {/* overflow */}
