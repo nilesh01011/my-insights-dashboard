@@ -5,7 +5,7 @@ import { SlArrowLeft } from 'react-icons/sl';
 import DonutChart from '../components/DonutChart';
 import PieCharts from '../components/PieCharts';
 import BarCharts from '../components/BarCharts';
-import { barCharts, doughnutData, pieCharts } from '../data';
+import { barCharts, doughnutData, pieCharts, pieCharts_2 } from '../data';
 import FilterModelShow from '../components/FilterModelShow';
 import FilterBox from '../components/FilterBox';
 
@@ -71,7 +71,7 @@ function InsightDashboard() {
                     {/* donuts chart */}
                     <DonutChart doughnutData={doughnutData} title='Business wise insights' />
                     {/* pie charts */}
-                    <PieCharts pieCharts={pieCharts} title='Model wise insights' />
+                    <PieCharts pieCharts={pieCharts} pieCharts_2={pieCharts_2} title='Model wise insights' />
                     {/* Bar chart */}
                     <BarCharts barCharts={barCharts} title='Top modes of interactions' />
                 </div>

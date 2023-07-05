@@ -55,7 +55,7 @@ function DonutChart({ title, doughnutData, }) {
     return (
         <div className='w-full md:rounded-[20px] rounded-[10px] bg-white h-full'>
             {/* title */}
-            <div className='w-full sm:h-[46px] h-max flex items-center gap-[6px] p-[16px] rounded-[0.5rem_0.5rem_0_0]'>
+            <div className='w-full sm:h-[46px] h-max flex items-center gap-[6px] p-[16px] pt-[20px] rounded-[0.5rem_0.5rem_0_0]'>
                 <h3 className={`text-black font-[600] text-[18px]`}>{title}</h3>
             </div>
 

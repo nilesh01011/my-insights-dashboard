@@ -67,6 +67,45 @@ export const pieCharts = [
     },
 ];
 
+export const pieCharts_2 = [
+    {
+        id: 1,
+        name: 'XUV700',
+        data: 9,
+        bgColor: '#14C9C9'
+    },
+    {
+        id: 2,
+        name: 'XUV300',
+        data: 8,
+        bgColor: '#165DFF'
+    },
+    {
+        id: 3,
+        name: 'THAR RWD',
+        data: 27,
+        bgColor: '#F7BA1E'
+    },
+    {
+        id: 4,
+        name: 'SCORPIO-N',
+        data: 8,
+        bgColor: '#14C967'
+    },
+    {
+        id: 5,
+        name: 'THAR 4WD',
+        data: 11,
+        bgColor: '#D2683F'
+    },
+    {
+        id: 6,
+        name: 'XUV400',
+        data: 9,
+        bgColor: '#52C1FF'
+    },
+];
+
 export const barCharts = [
     {
         id: 1,
