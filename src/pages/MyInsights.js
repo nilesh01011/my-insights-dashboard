@@ -21,14 +21,30 @@ function MyInsights() {
             title: 'XUV 700',
             text: 'XUV700 vs Scorpio-N. Which one to buy?',
             date: '12 Nov, 23',
-            time: '9:30 AM'
+            time: '9:30 AM',
+            tags: [
+                {
+                    id: 1.1,
+                    name: 'Product'
+                },
+                {
+                    id: 1.2,
+                    name: 'Sales'
+                }
+            ]
         },
         {
             id: 2,
             title: 'XUV 300',
             text: 'Service Retention - Extending the customer’s lifetime value',
             date: '11 Nov, 23',
-            time: '5:30 AM'
+            time: '5:30 AM',
+            tags: [
+                {
+                    id: 2.1,
+                    name: 'Services'
+                }
+            ]
         },
         {
             id: 3,
@@ -82,7 +98,21 @@ function MyInsights() {
             text: 'Seat belt is mandatory in rear seat which is not available in my vehicle GJ06TR0987, mode..',
             date: '12 Nov, 23',
             time: '9:30 AM',
-            links: '/summary-my-insights'
+            links: '/summary-my-insights',
+            tags: [
+                {
+                    id: 1.1,
+                    name: 'Product'
+                },
+                {
+                    id: 1.2,
+                    name: 'Sales'
+                },
+                {
+                    id: 1.3,
+                    name: 'Marketing'
+                }
+            ]
         }
     ];
 

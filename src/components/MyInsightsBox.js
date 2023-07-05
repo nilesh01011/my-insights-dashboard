@@ -10,12 +10,24 @@ function MyInsightsBox({ data }) {
     }
 
     return (
-        <div onClick={() => handleLinksRouter()} className='w-full h-[124px] rounded-[10px] p-[12px_16px] bg-white flex items-center gap-[8ps] cursor-pointer shadow-md'>
+        <div onClick={() => handleLinksRouter()} className='w-full h-max rounded-[10px] p-[12px_16px] bg-white flex items-center gap-[8ps] cursor-pointer shadow-md'>
             {/* left side */}
             <div className='w-full flex flex-col gap-[8px]'>
                 <h1 className='font-bold'>{data.title}</h1>
                 {/* text */}
                 <p className='text-[12px]'>{data.text}</p>
+                {/* tags */}
+                <div className='flex gap-[8px]'>
+                    {
+                        data.tags?.map((ele) => {
+                            return (
+                                <span key={ele.id} className={`border-[1px] text-[14px] border-[#8E8585] text-[#8E8585] bg-transparent p-[4px_15px] w-max rounded-full font-[600] cursor-pointer`}>{ele.name}</span>
+                            )
+                        })
+                    }
+                </div>
+                <div></div>
+                {/* time and date */}
                 <div className='flex items-center gap-[8px] text-[12px]'>
                     <span>{data.date}</span>
                     <span className='w-[4px] h-[4px] bg-[#8E8585] rounded-full'></span>
