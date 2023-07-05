@@ -140,13 +140,13 @@ function InsightDetails() {
                         {/* header */}
                         <div className={`w-full flex items-center justify-between`}>
                             {/* title */}
-                            <h2 className='font-bold'>Insight Statement</h2>
+                            <h2 className='font-bold mb-[6.5px]'>Insight Statement</h2>
                         </div>
 
                         {/* Mode of Interaction */}
                         <div className='flex w-fill flex-col gap-[5px] pt-0'>
                             {/* title */}
-                            <h6>Please write down statement</h6>
+                            {/* <h6>Please write down statement</h6> */}
                             {/* input fields */}
                             <textarea placeholder='Type here...' className='focus:outline-none border-[1px] border-[#DEDEDE] p-[10px] resize-none rounded-[5px]' maxLength={300}></textarea>
                         </div>
@@ -231,9 +231,9 @@ function InsightDetails() {
                     {/* Additional Details */}
                     <div className='w-full h-full mt-[20px]'>
                         {/* header */}
-                        <div onClick={() => setCollapseTwo(!collapseTwo)} className={`${collapseTwo === true && 'pb-0'} w-full cursor-pointer flex items-center justify-between`}>
+                        <div onClick={() => setCollapseTwo(!collapseTwo)} className={`${collapseTwo === true ? 'mb-[15px]' : 'mb-0'} w-full cursor-pointer flex items-center justify-between`}>
                             {/* title */}
-                            <h2 className='font-bold'>Additional Details</h2>
+                            <h2 className='font-bold'>Additional Details<span className='text-[#FF3E5B]'>*</span></h2>
                             {/* arrow icons */}
                             <span className={`${collapseTwo === true ? 'rotate-0' : 'rotate-180'} transition-all duration-300`}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -251,7 +251,7 @@ function InsightDetails() {
                                 {/* Tag Business Function* */}
                                 <div className='w-full'>
                                     {/* title */}
-                                    <h6 className='my-[12px]'>Tag Business Function<span className='text-[#FF3E5B]'>*</span></h6>
+                                    {/* <h6 className='my-[12px]'>Tag Business Function<span className='text-[#FF3E5B]'>*</span></h6> */}
 
                                     <div className='w-full flex gap-[12px] flex-wrap'>
                                         {
@@ -307,7 +307,7 @@ function InsightDetails() {
                                             {/* header */}
                                             <div className={`w-full flex items-center justify-between`}>
                                                 {/* title */}
-                                                <h2 className='font-bold'>Insight Statement {index + 2}</h2>
+                                                <h2 className='font-bold mb-[6.5px]'>Insight Statement {index + 2}</h2>
                                                 {/* icons */}
                                                 <span className='cursor-pointer' onClick={() => handleRemoveMoreInsightsStatementRow(ele.id)}>
                                                     <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -319,7 +319,7 @@ function InsightDetails() {
                                             {/* Mode of Interaction */}
                                             <div className='flex w-fill flex-col gap-[5px] pt-0'>
                                                 {/* title */}
-                                                <h6>Please write down statement</h6>
+                                                {/* <h6>Please write down statement</h6> */}
                                                 {/* input fields */}
                                                 <textarea placeholder='Type here...' className='focus:outline-none border-[1px] border-[#DEDEDE] p-[10px] resize-none rounded-[5px]' maxLength={300}></textarea>
                                             </div>
@@ -336,7 +336,7 @@ function InsightDetails() {
                                             {/* Mode of Interaction */}
                                             <div className='flex w-fill flex-col gap-[5px]'>
                                                 {/* title */}
-                                                <h6>Write down your observation<span className='text-red-500'>*</span></h6>
+                                                {/* <h6>Write down your observation<span className='text-red-500'>*</span></h6> */}
                                                 {/* input fields */}
                                                 <div className='relative'>
                                                     <textarea placeholder='Type here...' onChange={(e) => setFirstSuppObservation(e.target.value)} className='w-full focus:outline-none border-[1px] border-[#DEDEDE] p-[10px] resize-none rounded-[5px]' maxLength={300}></textarea>
@@ -398,7 +398,7 @@ function InsightDetails() {
                                         {/* Additional Details */}
                                         <div className='w-full h-full mt-[20px]'>
                                             {/* header */}
-                                            <div onClick={() => setCollapseTwo(!collapseTwo)} className={`${collapseTwo === true && 'pb-0'} w-full cursor-pointer flex items-center justify-between`}>
+                                            <div onClick={() => setCollapseTwo(!collapseTwo)} className={`${collapseTwo === true ? 'mb-[15px]' : 'mb-0'} w-full cursor-pointer flex items-center justify-between`}>
                                                 {/* title */}
                                                 <h2 className='font-bold'>Additional Details</h2>
                                                 {/* arrow icons */}
@@ -418,7 +418,7 @@ function InsightDetails() {
                                                     {/* Tag Business Function* */}
                                                     <div className='w-full'>
                                                         {/* title */}
-                                                        <h6 className='my-[12px]'>Tag Business Function<span className='text-[#FF3E5B]'>*</span></h6>
+                                                        {/* <h6 className='my-[12px]'>Tag Business Function<span className='text-[#FF3E5B]'>*</span></h6> */}
 
                                                         <div className='w-full flex gap-[12px] flex-wrap'>
                                                             {
@@ -482,7 +482,7 @@ function InsightDetails() {
 
                 <div className='xs:w-[328px] w-full flex h-full items-center gap-[10px]'>
                     {/* back button */}
-                    <button type='button' onClick={() => navigate('/interaction-details')} className='w-full h-full p-[15px_30px] bg-transparent border-[1px] border-[#FF3E5B] text-[#FF3E5B] font-semibold rounded-[5px] flex items-center justify-center'>
+                    <button type='button' onClick={() => navigate('/new-insights')} className='w-full h-full p-[15px_30px] bg-transparent border-[1px] border-[#FF3E5B] text-[#FF3E5B] font-semibold rounded-[5px] flex items-center justify-center'>
                         Back
                     </button>
 

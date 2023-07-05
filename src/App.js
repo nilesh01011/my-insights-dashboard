@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<HomePage />}></Route>
         <Route path='/my-insights' element={<MyInsights />}></Route>
-        <Route path='/interaction-details' element={<NewInsights />}></Route>
+        <Route path='/new-insights' element={<NewInsights />}></Route>
         <Route path='/insight-details' element={<InsightDetails />}></Route>
         <Route path='/insight-details-submit' element={<InsightSubmit />}></Route>
         {/* <Route path='/my-insights' element={<SuccessfulMyInsight />}></Route> */}

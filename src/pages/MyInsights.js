@@ -201,7 +201,7 @@ function MyInsights() {
             </div>
             {/* fixed button in button */}
             <div className='fixed bottom-0 left-0 right-0 w-full h-[62px] p-[10px_16px] flex items-center justify-center bg-white' style={{ boxShadow: ' 0px 0px 8px 0px rgba(78, 78, 78, 0.25)' }}>
-                <button onClick={() => navigate('/interaction-details')} type='button' className='xs:w-[328px] w-full h-full p-[15px_30px] bg-[#FF3E5B] text-white font-semibold rounded-[5px] flex items-center justify-center'>
+                <button onClick={() => navigate('/new-insights')} type='button' className='xs:w-[328px] w-full h-full p-[15px_30px] bg-[#FF3E5B] text-white font-semibold rounded-[5px] flex items-center justify-center'>
                     + Add Insight
                 </button>
             </div>
