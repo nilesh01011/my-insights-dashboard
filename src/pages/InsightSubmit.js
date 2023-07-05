@@ -6,6 +6,7 @@ import InputFields from '../components/InputFields';
 import DropdownSelect from '../components/DropdownSelect';
 import DropdownSelectTwo from '../components/DropdownSelectTwo';
 import VideoExplain from '../components/VideoExplain';
+import DiscardPopup from '../components/DiscardPopup';
 
 function InsightSubmit() {
     const navigate = useNavigate();
@@ -26,6 +27,8 @@ function InsightSubmit() {
         window.scrollTo(0, 0)
     }, [])
 
+    // discard event
+    const [discardEvent, setDiscardEvent] = useState(false);
 
     return (
         <div className='w-full h-full'>
@@ -40,10 +43,16 @@ function InsightSubmit() {
                         New Insights
                     </h1>
                     {/* filter icons */}
-                    <h6 onClick={() => navigate('/my-insights')} className='font-bold cursor-pointer'>
+                    <h6 onClick={() => setDiscardEvent(true)} className='font-bold cursor-pointer'>
                         Close
                     </h6>
                 </div>
+
+                {/* discard event */}
+                {
+                    discardEvent === true &&
+                    <DiscardPopup setDiscardEvent={setDiscardEvent} discardEvent={discardEvent} />
+                }
                 {/* video links */}
                 <VideoExplain />
                 {/* line */}

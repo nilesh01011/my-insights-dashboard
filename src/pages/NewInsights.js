@@ -7,6 +7,7 @@ import DropdownSelect from '../components/DropdownSelect';
 import DropdownSelectTwo from '../components/DropdownSelectTwo';
 import { HiOutlinePlus } from 'react-icons/hi';
 import VideoExplain from '../components/VideoExplain';
+import DiscardPopup from '../components/DiscardPopup';
 
 function NewInsights() {
 
@@ -264,6 +265,8 @@ function NewInsights() {
         console.log('vehicleModelValue:', vehicleModelValue)
     }
 
+    // discard event
+    const [discardEvent, setDiscardEvent] = useState(false);
 
     return (
         <div className='w-full h-full'>
@@ -278,11 +281,16 @@ function NewInsights() {
                         New Insights
                     </h1>
                     {/* filter icons */}
-                    {/* text-[#FF3E5B] */}
-                    <h6 onClick={() => navigate('/my-insights')} className='font-bold cursor-pointer'>
+                    <h6 onClick={() => setDiscardEvent(true)} className='font-bold cursor-pointer'>
                         Close
                     </h6>
                 </div>
+
+                {/* discard event */}
+                {
+                    discardEvent === true &&
+                    <DiscardPopup setDiscardEvent={setDiscardEvent} discardEvent={discardEvent} />
+                }
                 {/* video links */}
                 <VideoExplain />
                 {/* line */}

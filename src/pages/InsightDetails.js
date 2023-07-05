@@ -5,6 +5,7 @@ import Stepper from '../components/Stepper';
 import { HiOutlinePlus } from 'react-icons/hi';
 import ActiveTags from '../components/ActiveTags';
 import VideoExplain from '../components/VideoExplain';
+import DiscardPopup from '../components/DiscardPopup';
 
 function InsightDetails() {
     const navigate = useNavigate();
@@ -67,12 +68,6 @@ function InsightDetails() {
     const [addInsightStatement, setAddInsightStatement] = useState(false);
 
     const [rows_2, setRows_2] = useState([]);
-    // textarea changed event
-    // const handleTextAreaChanged = (ele) => {
-    //     const updatedRows = rows.map((item) => item.id === id ? { ...item, ele } : item);
-
-    //     setRows_2(updatedRows);
-    // }
 
     // rows count
     const rowsCount_2 = rows_2.length;
@@ -89,7 +84,10 @@ function InsightDetails() {
 
     useEffect(() => {
         window.scrollTo(0, 0)
-    }, [])
+    }, []);
+
+    // discard event
+    const [discardEvent, setDiscardEvent] = useState(false);
 
     return (
         <div className='w-full h-full'>
@@ -104,10 +102,17 @@ function InsightDetails() {
                         New Insights
                     </h1>
                     {/* filter icons */}
-                    <h6 onClick={() => navigate('/my-insights')} className='font-bold cursor-pointer'>
+                    <h6 onClick={() => setDiscardEvent(true)} className='font-bold cursor-pointer'>
                         Close
                     </h6>
                 </div>
+
+                {/* discard event */}
+                {
+                    discardEvent === true &&
+                    <DiscardPopup setDiscardEvent={setDiscardEvent} discardEvent={discardEvent} />
+                }
+
                 {/* video links */}
                 <VideoExplain />
                 {/* line */}
@@ -118,17 +123,17 @@ function InsightDetails() {
                 </div>
 
                 {/* Insight Statement */}
-                <div className='w-full h-full'>
+                <div className='w-full h-full bg-white p-[16px] rounded-[10px]'>
                     {/* Additional Details */}
-                    <div className='w-full h-full bg-white rounded-[10px] mb-[20px]'>
+                    <div className='w-full h-full mb-[20px]'>
                         {/* header */}
-                        <div className={`w-full p-[16px] flex items-center justify-between`}>
+                        <div className={`w-full flex items-center justify-between`}>
                             {/* title */}
                             <h2 className='font-bold'>Insight Statement</h2>
                         </div>
 
                         {/* Mode of Interaction */}
-                        <div className='flex w-fill flex-col gap-[5px] p-[16px] pt-0'>
+                        <div className='flex w-fill flex-col gap-[5px] pt-0'>
                             {/* title */}
                             <h6>Please write down statement</h6>
                             {/* input fields */}
@@ -137,15 +142,15 @@ function InsightDetails() {
                     </div>
 
                     {/* Supporting Observation 1 */}
-                    <div className='w-full h-full bg-white rounded-[10px] my-[20px]'>
+                    <div className='w-full h-full rounded-[10px]'>
                         {/* header */}
-                        <div className={`w-full p-[16px] cursor-pointer flex items-center justify-between`}>
+                        <div className={`w-full cursor-pointer flex items-center justify-between`}>
                             {/* title */}
                             <h2 className='font-bold'>Supporting Observation 1</h2>
                         </div>
 
                         {/* Mode of Interaction */}
-                        <div className='flex w-fill flex-col gap-[5px] p-[16px] pt-0'>
+                        <div className='flex w-fill flex-col gap-[5px] pt-0'>
                             {/* title */}
                             <h6>Write down your observation<span className='text-red-500'>*</span></h6>
                             {/* input fields */}
@@ -199,7 +204,7 @@ function InsightDetails() {
                     }
 
                     {/* + Add observations */}
-                    <div onClick={handleAddObservation} className='w-full my-[12px] flex items-center gap-[8px] cursor-pointer'>
+                    <div onClick={handleAddObservation} className='w-full my-[10px] flex items-center gap-[8px] cursor-pointer'>
                         <span className='w-[24px] h-[24px] rounded-full bg-[#FF3E5B] flex items-center justify-center'>
                             <HiOutlinePlus size={14} className='text-white' />
                         </span>
@@ -207,9 +212,9 @@ function InsightDetails() {
                     </div>
 
                     {/* Additional Details */}
-                    <div className='w-full h-full bg-white rounded-[10px] mt-[20px]'>
+                    <div className='w-full h-full mt-[20px]'>
                         {/* header */}
-                        <div onClick={() => setCollapseTwo(!collapseTwo)} className={`${collapseTwo === true && 'pb-0'} w-full p-[16px] cursor-pointer flex items-center justify-between`}>
+                        <div onClick={() => setCollapseTwo(!collapseTwo)} className={`${collapseTwo === true && 'pb-0'} w-full cursor-pointer flex items-center justify-between`}>
                             {/* title */}
                             <h2 className='font-bold'>Additional Details</h2>
                             {/* arrow icons */}
@@ -225,7 +230,7 @@ function InsightDetails() {
                         {/* contents */}
                         {
                             collapseTwo === true &&
-                            <div className='flex flex-col gap-[16px] bg-white divide-y-[1px] divide-[#DEDEDE] p-[16px] rounded-[10px]'>
+                            <div className='flex flex-col gap-[16px] bg-white divide-y-[1px] divide-[#DEDEDE] rounded-[10px]'>
                                 {/* Tag Business Function* */}
                                 <div className='w-full'>
                                     {/* title */}
@@ -275,17 +280,17 @@ function InsightDetails() {
 
                 {
                     addInsightStatement &&
-                    <div className='w-full h-full mt-[20px]'>
+                    <div className='w-full h-full mt-[20px] bg-white p-[16px] rounded-[10px]'>
                         {/* Additional Details */}
-                        <div className='w-full h-full bg-white rounded-[10px] mb-[20px]'>
+                        <div className='w-full h-full mb-[20px]'>
                             {/* header */}
-                            <div className={`w-full p-[16px] flex items-center justify-between`}>
+                            <div className={`w-full flex items-center justify-between`}>
                                 {/* title */}
                                 <h2 className='font-bold'>Insight Statement {rowsCount_2 + 1}</h2>
                             </div>
 
                             {/* Mode of Interaction */}
-                            <div className='flex w-fill flex-col gap-[5px] p-[16px] pt-0'>
+                            <div className='flex w-fill flex-col gap-[5px] pt-0'>
                                 {/* title */}
                                 <h6>Please write down statement</h6>
                                 {/* input fields */}
@@ -294,15 +299,15 @@ function InsightDetails() {
                         </div>
 
                         {/* Supporting Observation 1 */}
-                        <div className='w-full h-full bg-white rounded-[10px] my-[20px]'>
+                        <div className='w-full h-full'>
                             {/* header */}
-                            <div className={`w-full p-[16px] cursor-pointer flex items-center justify-between`}>
+                            <div className={`w-full cursor-pointer flex items-center justify-between`}>
                                 {/* title */}
                                 <h2 className='font-bold'>Supporting Observation 1</h2>
                             </div>
 
                             {/* Mode of Interaction */}
-                            <div className='flex w-fill flex-col gap-[5px] p-[16px] pt-0'>
+                            <div className='flex w-fill flex-col gap-[5px]'>
                                 {/* title */}
                                 <h6>Write down your observation<span className='text-red-500'>*</span></h6>
                                 {/* input fields */}
@@ -325,15 +330,15 @@ function InsightDetails() {
                                 {
                                     rows.map((ele, index) => {
                                         return (
-                                            <div key={ele.id} className='w-full h-full bg-white rounded-[10px]'>
+                                            <div key={ele.id} className='w-full h-full'>
                                                 {/* header */}
-                                                <div className={`w-full p-[16px] cursor-pointer flex items-center justify-between`}>
+                                                <div className={`w-full cursor-pointer flex items-center justify-between`}>
                                                     {/* title */}
                                                     <h2 className='font-bold'>Supporting Observation {ele.id}</h2>
                                                 </div>
 
                                                 {/* Mode of Interaction */}
-                                                <div className='flex w-fill flex-col gap-[5px] p-[16px] pt-0'>
+                                                <div className='flex w-fill flex-col gap-[5px] pt-0'>
                                                     {/* title */}
                                                     <h6>Write down your observation<span className='text-red-500'>*</span></h6>
                                                     {/* input fields */}
@@ -356,7 +361,7 @@ function InsightDetails() {
                         }
 
                         {/* + Add observations */}
-                        <div onClick={handleAddObservation} className='w-full my-[12px] flex items-center gap-[8px] cursor-pointer'>
+                        <div onClick={handleAddObservation} className='w-full my-[10px] flex items-center gap-[8px] cursor-pointer'>
                             <span className='w-[24px] h-[24px] rounded-full bg-[#FF3E5B] flex items-center justify-center'>
                                 <HiOutlinePlus size={14} className='text-white' />
                             </span>
@@ -364,9 +369,9 @@ function InsightDetails() {
                         </div>
 
                         {/* Additional Details */}
-                        <div className='w-full h-full bg-white rounded-[10px] mt-[20px]'>
+                        <div className='w-full h-full mt-[20px]'>
                             {/* header */}
-                            <div onClick={() => setCollapseTwo(!collapseTwo)} className={`${collapseTwo === true && 'pb-0'} w-full p-[16px] cursor-pointer flex items-center justify-between`}>
+                            <div onClick={() => setCollapseTwo(!collapseTwo)} className={`${collapseTwo === true && 'pb-0'} w-full cursor-pointer flex items-center justify-between`}>
                                 {/* title */}
                                 <h2 className='font-bold'>Additional Details</h2>
                                 {/* arrow icons */}
@@ -382,7 +387,7 @@ function InsightDetails() {
                             {/* contents */}
                             {
                                 collapseTwo === true &&
-                                <div className='flex flex-col gap-[16px] bg-white divide-y-[1px] divide-[#DEDEDE] p-[16px] rounded-[10px]'>
+                                <div className='flex flex-col gap-[16px] bg-white divide-y-[1px] divide-[#DEDEDE] rounded-[10px]'>
                                     {/* Tag Business Function* */}
                                     <div className='w-full'>
                                         {/* title */}
