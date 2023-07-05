@@ -180,7 +180,7 @@ function InsightDetails() {
 
                     {
                         showMoreObservation === true &&
-                        <div className='w-full h-full flex flex-col gap-[20px] mb-[20px]'>
+                        <div className='w-full h-full flex flex-col mb-[10px]'>
                             {
                                 rows.map((ele, index) => {
                                     return (
@@ -353,7 +353,7 @@ function InsightDetails() {
 
                                         {
                                             showMoreObservation === true &&
-                                            <div className='w-full h-full flex flex-col gap-[20px] mb-[20px]'>
+                                            <div className='w-full h-full flex flex-col mb-[10px]'>
                                                 {
                                                     rows.map((ele, index) => {
                                                         return (
